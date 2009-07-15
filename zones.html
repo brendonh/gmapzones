@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>GeoZone Demo</title>
+
+    <!-- Microcosm key -->
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA8Jfro1jWAoNMDj6IxCTa-BTIlVw26XeTqYtAJO2YYDv__wYkPhSmIsg5W-tE15eQOhikdATLGDk03Q" type="text/javascript"></script>
+
+    <script src="json2.js"></script>
+    <script src="zones.js"></script>
+
+    <script type="text/javascript">
+
+    var demoJSON = '[{ "id": 1, "name": "One", "type": "circle", "lat": 25.07440, "lng": 121.52647, "radius": 806 },' +
+                   ' { "id": 2, "name": "Two", "type": "circle", "lat": 25.07285, "lng": 121.54089, "radius": 624 } ]';
+
+    </script>
+
+    <style type="text/css">
+    
+    body {
+      font-family: Verdana, Arial, Sans;
+    }
+
+    #mapEmbed {
+      float: left;
+      width: 500px;
+      height: 500px;
+    }
+
+    #zoneControl {
+      float: left;
+      padding: 10px;
+    }
+
+    #instructions {
+      font-size: 11px;
+      color: red;
+      height: 15px;
+    }
+
+    #zoneList, #propBox {
+      height: 180px;
+      overflow: auto;
+      border: 1px solid #aaa;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    #zoneList a, #zoneList a:visited {
+      display: block;
+      color: blue;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    #zoneList a:hover { text-decoration: underline; }
+
+    #zoneList a.current { color: green; }
+
+
+    #propBox table {
+      border-collapse: collapse;
+    }
+
+    #propBox th {
+      font-size: 11px;
+      text-align: left;
+    }
+    
+    #propBox td {
+      font-size: 11px;
+    }
+
+    #propBox tr.buttonRow td {
+      text-align: center;
+    }
+
+    #input, #output {
+      float: left;
+      width: 300px;
+      border: 1px dotted #999;
+      padding: 10px; margin: 10px;
+    }
+
+    #input h1, #output h1 {
+      font-weight: bold;
+      font-size: 11px;
+      text-align: left;
+      margin: 0;
+      padding: 0;
+    }
+
+    </style>
+
+  </head>
+  <body onload="setup(); loadJSON(demoJSON);" onunload="GUnload()">
+ 
+   <div id="mapEmbed">Loading...</div>
+
+
+   <div id="zoneControl">
+     Add Circle:
+     <!-- <select name="zoneType" id="zoneType">
+       <option value="circle">Circle</option>
+       <option value="square">Square</option>
+       <option value="polygon">Polygon</option>
+     </select> -->
+     <input type="button" name="addZoneButton" value="Go" onclick="addZone()" />
+
+     <div id="instructions"></div>
+
+     <div id="zoneList"></div>
+
+     <div id="propBox"></div>
+
+     <input type="button" value="Save" onclick="document.getElementById('output').innerHTML = '<h1>OUTPUT</h1>' + exportJSON(' ');" />
+
+   </div>
+
+   <div style="clear: both"> </div>
+
+   <div id="input">
+     <h1>INPUT</h1>
+     <script type="text/javascript">document.write(demoJSON);</script>
+   </div>
+
+   <div id="output">
+     <h1>OUTPUT</h1>
+   </div>
+
+  </body>
+</html>
